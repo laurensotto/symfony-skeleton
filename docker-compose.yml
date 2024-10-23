@@ -1,0 +1,30 @@
+services:
+  nginx:
+    build: docker/dev/nginx
+    depends_on:
+      - php
+    volumes:
+      - .:/var/www/app:cached
+    ports:
+      - '8084:80'
+  php:
+    build: docker/dev/php
+    depends_on:
+      - psql
+    volumes:
+      - .:/var/www/app:cached
+    ports:
+      - '9000:9000'
+  psql:
+    image: postgres:16.0
+    volumes:
+      - database_vol:/var/lib/postgresql/data:rw
+    environment:
+      POSTGRES_USER: psql
+      POSTGRES_PASSWORD: psql
+      POSTGRES_DB: psql
+    ports:
+      - 8432:5432
+
+volumes:
+  database_vol: {}
