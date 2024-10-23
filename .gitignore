@@ -15,3 +15,17 @@
 ### macOS ###
 .DS_Store
 ### macOS ###
+
+### PHPStan ###
+phpstan.neon
+### PHPStan ###
+
+### PHPUnit ###
+/phpunit.xml
+.phpunit.result.cache
+### PHPUnit ###
+
+### PHP_CodeSniffer ###
+/.phpcs-cache
+/phpcs.xml
+### PHP_CodeSniffer ###
