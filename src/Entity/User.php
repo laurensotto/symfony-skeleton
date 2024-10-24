@@ -35,7 +35,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @param string[] $roles
      */
-    public function __construct(string $email, string $password, array $roles)
+    public function __construct(string $email, array $roles)
     {
         foreach ($roles as $role) {
             if (!Role::isValidRole($role)) {
@@ -43,10 +43,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             }
         }
 
-        $this->uuid     = Uuid::v4();
-        $this->email    = $email;
-        $this->password = $password;
-        $this->roles    = $roles;
+        $this->uuid  = Uuid::v4();
+        $this->email = $email;
+        $this->roles = $roles;
     }
 
     public function getUuid(): Uuid

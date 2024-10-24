@@ -39,10 +39,11 @@ class UserFaker
 
     private static function createUser(string $role): User
     {
-        return new User(
+        $user = new User(
             'henk@devries.nl',
-            'henkiscool123!',
             [$role]
         );
+
+        return $user->setPassword('henkiscool123!');
     }
 }

@@ -21,9 +21,10 @@ class UserTest extends TestCase
     {
         $user = new User(
             'henk@devries.nl',
-            'henkiscool123!',
             [Role::ROLE_USER]
         );
+
+        $user->setPassword('henkiscool123!');
 
         self::assertInstanceOf(Uuid::class, $user->getUuid());
         self::assertSame('henk@devries.nl', $user->getEmail());
@@ -51,9 +52,10 @@ class UserTest extends TestCase
     {
         $user = new User(
             'henk@devries.nl',
-            'henkiscool123!',
             [Role::ROLE_USER]
         );
+
+        $user->setPassword('henkiscool123!');
 
         $user->eraseCredentials();
 
@@ -73,7 +75,6 @@ class UserTest extends TestCase
 
         new User(
             'henk@devries.nl',
-            'henkiscool123!',
             [Role::ROLE_ADMIN, 'ROLE_THAT_DOES_NOT_EXIST', Role::ROLE_USER]
         );
     }
