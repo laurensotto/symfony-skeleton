@@ -20,9 +20,7 @@ readonly class CreateUserRequest
     #[Assert\Length(min: 10, minMessage: 'Please make sure the password is at least 10 characters')]
     public string $password;
 
-    /**
-     * @var string[]
-     */
+    /** @var string[] */
     #[OA\Property(
         property: 'roles',
         type: 'array',
@@ -31,9 +29,7 @@ readonly class CreateUserRequest
     #[Assert\Choice(choices: Role::ROLES, multiple: true, message: 'Please submit valid roles.')]
     public array $roles;
 
-    /**
-     * @param string[] $roles
-     */
+    /** @param string[] $roles */
     public function __construct(string $email, string $password, array $roles)
     {
         $this->email    = $email;

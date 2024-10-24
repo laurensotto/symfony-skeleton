@@ -32,9 +32,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles;
 
-    /**
-     * @param string[] $roles
-     */
+    /** @param string[] $roles */
     public function __construct(string $email, array $roles)
     {
         foreach ($roles as $role) {
@@ -80,9 +78,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->roles;
     }
 
-    /**
-     * @param string[] $roles
-     */
+    /** @param string[] $roles */
     public function setRoles(array $roles): self
     {
         foreach ($roles as $role) {

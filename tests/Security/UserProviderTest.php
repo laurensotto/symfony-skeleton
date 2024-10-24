@@ -19,9 +19,7 @@ class UserProviderTest extends TestCase
 {
     use ProphecyTrait;
 
-    /**
-     * @var ObjectProphecy<TokenStorageInterface>
-     */
+    /** @var ObjectProphecy<TokenStorageInterface> */
     private ObjectProphecy $tokenStorage;
 
     private UserProvider $userProvider;

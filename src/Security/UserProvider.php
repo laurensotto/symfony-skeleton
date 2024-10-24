@@ -13,9 +13,7 @@ class UserProvider
     {
     }
 
-    /**
-     * @throws UserNotAvailableException
-     */
+    /** @throws UserNotAvailableException */
     public function getUser(): User
     {
         $token = $this->tokenStorage->getToken();

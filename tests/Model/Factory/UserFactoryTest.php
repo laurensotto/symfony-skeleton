@@ -23,9 +23,7 @@ class UserFactoryTest extends TestCase
 {
     use ProphecyTrait;
 
-    /**
-     * @var ObjectProphecy<UserPasswordHasherInterface>
-     */
+    /** @var ObjectProphecy<UserPasswordHasherInterface> */
     private ObjectProphecy $passwordHasher;
 
     private UserFactory $userFactory;

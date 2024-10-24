@@ -9,9 +9,7 @@ use OpenApi\Attributes as OA;
 #[OA\Schema]
 readonly class ValidationErrorResponse
 {
-    /**
-     * @param ViolationResponse[] $violations
-     */
+    /** @param ViolationResponse[] $violations */
     public function __construct(
         #[OA\Property(
             property: 'violations',

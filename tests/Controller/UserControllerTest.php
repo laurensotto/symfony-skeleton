@@ -21,19 +21,13 @@ class UserControllerTest extends TestCase
 {
     use ProphecyTrait;
 
-    /**
-     * @var ObjectProphecy<EntityManagerInterface>
-     */
+    /** @var ObjectProphecy<EntityManagerInterface> $entityManager */
     private ObjectProphecy $entityManager;
 
-    /**
-     * @var ObjectProphecy<UserFactory>
-     */
+    /** @var ObjectProphecy<UserFactory> $userFactory */
     private ObjectProphecy $userFactory;
 
-    /**
-     * @var ObjectProphecy<UserProvider>
-     */
+    /** @var ObjectProphecy<UserProvider> $userProvider */
     private ObjectProphecy $userProvider;
 
     private UserController $userController;

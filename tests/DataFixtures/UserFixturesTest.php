@@ -19,9 +19,7 @@ class UserFixturesTest extends TestCase
 {
     use ProphecyTrait;
 
-    /**
-     * @var ObjectProphecy<UserPasswordHasherInterface> $passwordHasher
-     */
+    /** @var ObjectProphecy<UserPasswordHasherInterface> $passwordHasher */
     private ObjectProphecy $passwordHasher;
 
     private UserFixtures $fixtures;

@@ -8,19 +8,13 @@ use App\Entity\User;
 
 class UserFaker
 {
-    /**
-     * Default option, returns a random user. Use this unless a specific configuration is required.
-     */
+    /** Default option, returns a random user. Use this unless a specific configuration is required. */
     const int RANDOM = 0;
 
-    /**
-     * Returns a user
-     */
+    /** Returns a user */
     const int USER = 1;
 
-    /**
-     * Returns a user with admin permissions
-     */
+    /** Returns a user with admin permissions */
     const int ADMIN = 2;
 
     private const array OPTIONS = [

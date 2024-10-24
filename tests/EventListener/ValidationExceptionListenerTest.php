@@ -35,9 +35,7 @@ class ValidationExceptionListenerTest extends TestCase
 
     public function testOnKernelException(): void
     {
-        /**
-         * @var ObjectProphecy<HttpKernelInterface> $httpKernelInterface
-         */
+        /** @var ObjectProphecy<HttpKernelInterface> $httpKernelInterface */
         $httpKernelInterface = $this->prophesize(HttpKernelInterface::class);
 
         $constraintViolation1 = new ConstraintViolation(
@@ -125,9 +123,7 @@ class ValidationExceptionListenerTest extends TestCase
 
     public function testOnKernelExceptionWithIrrelevantException(): void
     {
-        /**
-         * @var ObjectProphecy<HttpKernelInterface> $httpKernelInterface
-         */
+        /** @var ObjectProphecy<HttpKernelInterface> $httpKernelInterface */
         $httpKernelInterface = $this->prophesize(HttpKernelInterface::class);
 
         $exceptionEvent = new ExceptionEvent(
@@ -154,9 +150,7 @@ class ValidationExceptionListenerTest extends TestCase
 
     public function testOnKernelExceptionWithIrrelevantPreviousException(): void
     {
-        /**
-         * @var ObjectProphecy<HttpKernelInterface> $httpKernelInterface
-         */
+        /** @var ObjectProphecy<HttpKernelInterface> $httpKernelInterface */
         $httpKernelInterface = $this->prophesize(HttpKernelInterface::class);
 
         $exceptionEvent = new ExceptionEvent(
