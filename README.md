@@ -34,7 +34,7 @@ Preparing objects to serialize is a manual job in this application. After trying
 - No control over names given to generated OpenAPI models
 - Ever-growing clutter in your Entity classes, something that is a pain to keep track of for me
 
-In conclusion, I found that writing request and response models not only gives me the headspace to see what is going on in my code but it also brought me to a point where I was able to have my requests pre-mapped and validated, erasing the need for Symfony Forms and working with Request models in controllers. The latter being the biggest upside, as I was free from checks like these:
+I found that writing request and response models not only gives me the headspace to see what is going on in my code, but it also made sure that I was more aware of which data would be processed by which user type. To avoid situations where normal users could change passwords for others, or even their own roles. Lastly it brought me to a point where I was able to have my requests pre-mapped and validated, erasing the need for Symfony Forms and working with Request models in controllers. The latter being the biggest upside, as I was free from checks like these:
 ```php
 public function post(Request $request): JsonResponse
 {
@@ -49,6 +49,10 @@ public function post(Request $request): JsonResponse
 ```
 Please refer to the [UserController](https://github.com/laurensotto/symfony-skeleton/blob/main/src/Controller/V1/UserController.php), [CreateUserRequest](https://github.com/laurensotto/symfony-skeleton/blob/main/src/Model/Request/User/CreateUserRequest.php) and [ValidationExceptionListener](https://github.com/laurensotto/symfony-skeleton/blob/main/src/EventListener/ValidationExceptionListener.php) for the solution to this issue. Note that the Request model is barebones in terms of validation rules and should be expanded on in real life scenarios.
 
+Now I must also address the downside of favoring manual implementation over libraries like JMS, Symfony's serializer groups and Symfony Forms. Writing response and request models yourself takes up some time, especially when you're just getting into it. Making the use of automagic libraries a really appealing solution: just add a few attributes here and there, write yourself a FormType for that one entity and you're done. In this regard, the manual solution absolutely loses out.
+
+However, after some time using both concepts in my code, I did decide that doing these actions manually is worth the extra effort. Even if we're not taking the 2 major issues I described earlier into account. The automatic request validation before entering the first line of written code, control over how things are actually serialized and the way you're forced to think about who gets to change what, weigh up to the extra few minutes you spend on writing the actual classes. That said, in reality building a FormType takes time as well, especially because you should build a separate one for every type of user you have, giving you the control of what certain users can and can't change. Something I (and likely others) tend to overlook when leaving trivial things such as posting and patching up to automagic. Giving even more points to the manual solution.
+ 
 ## Other
 #### Alternatives for PostgreSQL
 I picked PostgreSQL for this project due to the fact that it has native support for the UUID type. Whilst it is possible to run this application with MySQL, MariaDB or something else, keep in mind that certain features could not work out of the box and might require additional configuration.
