@@ -29,3 +29,7 @@ phpstan.neon
 /.phpcs-cache
 /phpcs.xml
 ### PHP_CodeSniffer ###
+
+### JWT Authentication Bundle ###
+/config/jwt/*.pem
+### JWT Authentication Bundle ###

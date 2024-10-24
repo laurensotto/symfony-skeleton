@@ -11,8 +11,55 @@ nelmio_api_doc:
                     description: 'Authorization: Bearer {jwt}'
                     name: Authorization
                     in: header
+            schemas:
+                AuthenticationRequest:
+                    type: object
+                    required:
+                        - username
+                        - password
+                    properties:
+                        username:
+                            type: string
+                            description: The user's email address
+                            example: henk@devries.nl
+                        password:
+                            type: string
+                            description: The user's password
+                            example: H3nk1SC00l!
+                AuthenticationSuccessfulResponse:
+                    type: object
+                    properties:
+                        token:
+                            type: string
+                            description: The JWT token for authentication
+                            example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
         security:
             - Bearer: []
+        paths:
+            /api/v1/authenticate:
+                post:
+                    tags:
+                        - Authentication
+                    requestBody:
+                        description: User credentials
+                        required: true
+                        content:
+                            application/json:
+                                schema:
+                                    $ref: '#/components/schemas/AuthenticationRequest'
+                    responses:
+                        '200':
+                            description: Successful login
+                            content:
+                                application/json:
+                                    schema:
+                                        $ref: '#/components/schemas/AuthenticationSuccessfulResponse'
+                        '401':
+                            description: Unauthorized
+                            content:
+                                application/json:
+                                    schema:
+                                        $ref: '#/components/schemas/UnauthorizedResponse'
     areas:
         path_patterns:
             - ^/api(?!/doc$)

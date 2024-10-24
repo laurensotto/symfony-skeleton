@@ -2,3 +2,6 @@ api_v1:
     resource: ../src/Controller/V1/
     type: attribute
     prefix: /api/v1
+
+api_login_check:
+    path: /api/v1/authenticate

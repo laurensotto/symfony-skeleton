@@ -4,7 +4,8 @@ declare(strict_types=1);
 namespace App\Tests\Controller;
 
 use App\Controller\V1\UserController;
-use App\Model\Response\UserResponse;
+use App\Model\Response\User\UserResponse;
+use App\Tests\Faker\UserFaker;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
@@ -21,11 +22,13 @@ class UserControllerTest extends TestCase
 
     public function testGet(): void
     {
+        $user = UserFaker::create();
+
         /** @var string $actualResponse */
-        $actualResponse = $this->userController->get('test')->getContent();
+        $actualResponse = $this->userController->get($user)->getContent();
 
         /** @var string $expectedResponse */
-        $expectedResponse = json_encode(new UserResponse('test'));
+        $expectedResponse = json_encode(UserResponse::fromUser($user));
 
         self::assertJsonStringEqualsJsonString(
             $expectedResponse,

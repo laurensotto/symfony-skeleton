@@ -1,0 +1,37 @@
+security:
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+    firewalls:
+        login:
+            pattern: ^/api/v1/authenticate
+            stateless: true
+            json_login:
+                check_path: /api/v1/authenticate
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+        apidoc:
+            pattern: ^/api/doc
+            security: false
+        api_v1:
+            pattern: ^/api/v1
+            stateless: true
+            entry_point: jwt
+            jwt: ~
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+    role_hierarchy:
+         ROLE_ADMIN: ROLE_USER
+when@test:
+    security:
+        password_hashers:
+            Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
+                algorithm: auto
+                cost: 4
+                time_cost: 3
+                memory_cost: 10
