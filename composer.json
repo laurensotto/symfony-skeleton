@@ -31,6 +31,7 @@
         "symfony/yaml": "7.1.*"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.6",
         "jangregor/phpstan-prophecy": "^1.0",
         "phpspec/prophecy-phpunit": "^2.2",
         "phpstan/phpstan": "^1.12",
