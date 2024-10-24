@@ -1,8 +1,11 @@
+> **Disclaimer** - This application was built as a fun project to jump start my own hobby projects and learn more about Symfony. Keep in mind that the choices I made are opinionated and might not be suited to your needs.
+> If there is anything you'd like to add or change, feel free to open an issue or pull request. The same goes if you discover any bugs.
+
 ## Introduction
 
 This Symfony project is meant to be used as a starting point when building a Symfony backend. It comes equipped with the following features:
 
-- A local development environment using Docker, NGINX and PostgreSQL - [What if I want to use something else?](#Alternative for PostgreSQL)
+- A local development environment using Docker, NGINX and PostgreSQL
 - PHPStan at level 9
 - PHP_CodeSniffer ([with custom rules](https://github.com/laurensotto/symfony-skeleton/blob/main/phpcs.xml.dist))
 - Unit tests with 100% code coverage (except for repositories)
@@ -14,9 +17,6 @@ This Symfony project is meant to be used as a starting point when building a Sym
     - Authentication
     - User actions
 - [Automatic request validation to response conversion](https://github.com/laurensotto/symfony-skeleton/blob/main/src/EventListener/ValidationExceptionListener.php)
-
-> **Disclaimer** - This application was built as a fun project to jump start my own hobby projects and learn more about Symfony. Keep in mind that the choices I made are opinionated and might not be suited to your needs.
-> If there is anything you'd like to add or change, feel free to open an issue or pull request. The same goes if you discover any bugs.
 
 ## Setting up
 The local development environment for this application can be started by running `docker compose up`. For more information on Docker Compose, please refer to [the documentation](https://docs.docker.com/compose/) offered by Docker.
