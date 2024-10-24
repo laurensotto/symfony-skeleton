@@ -7,6 +7,7 @@ use App\Constant\Role;
 use App\Entity\User;
 use App\Model\Factory\UserFactory;
 use App\Model\Request\User\CreateUserRequest;
+use App\Model\Request\User\UpdateUserRequest;
 use App\Model\Response\Error\UnauthorizedResponse;
 use App\Model\Response\Error\ValidationErrorResponse;
 use App\Model\Response\User\UserResponse;
@@ -84,6 +85,38 @@ class UserController extends AbstractController
         $this->entityManager->flush();
 
         return new JsonResponse(UserFactory::responseFromEntity($user));
+    }
+
+    #[OA\Patch(
+        description: 'Update a user',
+        requestBody: new OA\RequestBody(content: new OA\JsonContent(ref: new Model(type: UpdateUserRequest::class))),
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: 'User details',
+                content: new OA\JsonContent(ref: new Model(type: UserResponse::class)),
+            ),
+            new OA\Response(
+                response: 401,
+                description: 'Unauthorized',
+                content: new OA\JsonContent(ref: new Model(type: UnauthorizedResponse::class)),
+            ),
+            new OA\Response(
+                response: 422,
+                description: 'Error: Unprocessable Content',
+                content: new OA\JsonContent(ref: new Model(type: ValidationErrorResponse::class)),
+            ),
+        ]
+    )]
+    #[Route('/{user}', methods: ['PATCH'])]
+    #[IsGranted(Role::ROLE_ADMIN)]
+    public function patch(#[MapRequestPayload] UpdateUserRequest $request, User $user): JsonResponse
+    {
+        $updatedUser = $this->userFactory->updateEntityFromRequest($request, $user);
+
+        $this->entityManager->flush();
+
+        return new JsonResponse(UserFactory::responseFromEntity($updatedUser));
     }
 
     #[OA\Get(

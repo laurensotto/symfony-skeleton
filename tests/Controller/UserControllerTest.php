@@ -8,6 +8,7 @@ use App\Controller\V1\UserController;
 use App\Entity\User;
 use App\Model\Factory\UserFactory;
 use App\Model\Request\User\CreateUserRequest;
+use App\Model\Request\User\UpdateUserRequest;
 use App\Security\UserProvider;
 use App\Tests\Faker\UserFaker;
 use Doctrine\ORM\EntityManagerInterface;
@@ -92,6 +93,28 @@ class UserControllerTest extends TestCase
 
         /** @var string $actualResponse */
         $actualResponse = $this->userController->post($userRequest)->getContent();
+
+        /** @var string $expectedResponse */
+        $expectedResponse = json_encode(UserFactory::responseFromEntity($user));
+
+        self::assertJsonStringEqualsJsonString(
+            $expectedResponse,
+            $actualResponse
+        );
+    }
+
+    public function testPatch(): void
+    {
+        $userRequest = new UpdateUserRequest('henk@devries.nl', [Role::ROLE_ADMIN], 'password');
+        $user        = new User('henk@devries.nl', [Role::ROLE_ADMIN]);
+
+        $user->setPassword('hashed-password');
+
+        $this->userFactory->updateEntityFromRequest($userRequest, $user)->willReturn($user);
+        $this->entityManager->flush()->shouldBeCalled();
+
+        /** @var string $actualResponse */
+        $actualResponse = $this->userController->patch($userRequest, $user)->getContent();
 
         /** @var string $expectedResponse */
         $expectedResponse = json_encode(UserFactory::responseFromEntity($user));
