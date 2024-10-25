@@ -34,7 +34,7 @@ Preparing objects to serialize is a manual job in this application. After trying
 - No control over names given to generated OpenAPI models
 - Ever-growing clutter in your Entity classes, something that is a pain to keep track of for me
 
-I found that writing request and response models not only gives me the headspace to see what is going on in my code, but it also made sure that I was more aware of which data would be processed by which user type. To avoid situations where normal users could change passwords for others, or even their own roles. Lastly it brought me to a point where I was able to have my requests pre-mapped and validated, erasing the need for Symfony Forms and working with Request models in controllers. The latter being the biggest upside, as I was free from checks like these:
+I found that writing request and response models not only gives me the headspace to see what is going on in my code, but it also made sure that I was more aware of which data would be processed by which user type. To avoid situations where normal users could change passwords for others, or even their own roles. Lastly it brought me to a point where I was able to have my requests pre-mapped and validated, erasing the need for Symfony Forms and working with the standard Request object in controllers. The latter being the biggest upside, as I was free from checks like these:
 ```php
 public function post(Request $request): JsonResponse
 {
